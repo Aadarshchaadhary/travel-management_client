@@ -1,11 +1,14 @@
 import "./App.css";
 
+import LoginPage from "./pages/auth/login";
+import RegisterPage from "./pages/auth/register";
+
 function App() {
   return (
-    <main>
-      <h1 className="text-blue-950 text-9xl font-extrabold">Hello Sir G</h1>
-      <h2>This is my tour management system</h2>
-    </main>
+    <>
+      <LoginPage />
+      <RegisterPage />
+    </>
   );
 }
 
