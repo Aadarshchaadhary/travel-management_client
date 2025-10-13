@@ -1,4 +1,5 @@
 import { LuAsterisk } from "react-icons/lu";
+import { Link } from "react-router";
 
 const RegisterFrom = () => {
   return (
@@ -126,9 +127,11 @@ const RegisterFrom = () => {
         <div>
           <p className="text-center mt-2 text-gray-700">
             Already have an Account?
-            <span className="cursor-pointer text-blue-600 mx-2  font-semibold">
-              sign In
-            </span>
+            <Link to="/Sign-in">
+              <span className="cursor-pointer text-blue-600 mx-2  font-semibold">
+                sign In
+              </span>
+            </Link>
           </p>
         </div>
       </form>
