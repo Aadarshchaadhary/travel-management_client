@@ -1,13 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
+import type { UseFormRegister } from "react-hook-form";
 import { LuAsterisk } from "react-icons/lu";
 
 interface IProps {
   label: string;
   id: string;
+  name: "email" | "password";
+  register: UseFormRegister<{ email: string; password: string }>;
   placeholder?: string;
   type?: "text" | "email" | "password" | "date";
-  onChange?: (e: any) => void;
 }
 
 const Input: React.FC<IProps> = ({
@@ -15,7 +17,8 @@ const Input: React.FC<IProps> = ({
   label,
   type = "text",
   placeholder = "Enter something ",
-  onChange,
+  name,
+  register,
 }) => {
   return (
     <div>
@@ -28,9 +31,9 @@ const Input: React.FC<IProps> = ({
       <input
         className="focus:outline-blue-500 mt-1 w-full py-3 px-2 border  rounded-md border-gray-300 text-[16px] placeholder:text-[16px] placeholder:text-gray-400"
         placeholder={placeholder}
-        onChange={onChange}
         type={type}
         id={id}
+        {...register(name)}
       />
     </div>
   );
