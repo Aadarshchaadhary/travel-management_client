@@ -1,16 +1,21 @@
 import { Link } from "react-router";
-import Input from "../common/ui/buttons/inputs/input";
+import Input from "../common/ui/inputs/input";
 import { useForm } from "react-hook-form";
 
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Button from "../common/ui/buttons/buttons";
+import { LiaSignInAltSolid } from "react-icons/lia";
 
 const loginSchema = yup.object({
-  email: yup.string().email().required(),
-  password: yup.string().required(),
+  email: yup
+    .string()
+    .email("Enter a valid email")
+    .required("Email is required"),
+  password: yup.string().required("Password is required"),
 });
 
-const LoginFrom = () => {
+const LoginForm = () => {
   const {
     register,
     handleSubmit,
@@ -23,32 +28,18 @@ const LoginFrom = () => {
     resolver: yupResolver(loginSchema),
   });
 
-  console.log(errors);
-
-  // const [formData, setFormData] = useState({
-  //   email: "",
-  //   password: "",
-  // });
-
-  // const onChange = (e: any) => {
-  //   console.log(e.target.value, e.target.name);
-
-  //   setFormData((prev) => {
-  //     return { ...prev, [e.target.name]: e.target.value };
-  //   });
-  // };
-
   const onSubmit = (data: { email: string; password: string }) => {
     console.log(data);
   };
 
   return (
-    <div className="mt-5 w-full h-full ">
-      <form onSubmit={handleSubmit(onSubmit)} className=" w-full h-full ">
+    <div className="mt-5 w-full h-full">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full h-full">
         <div className="w-full h-full flex flex-col gap-5">
           {/* Email input */}
           <Input
-            name={"email"}
+            error={errors?.email?.message}
+            name="email"
             register={register}
             label="Email"
             id="email"
@@ -58,7 +49,8 @@ const LoginFrom = () => {
 
           {/* Password input */}
           <Input
-            name={"password"}
+            error={errors?.password?.message}
+            name="password"
             register={register}
             label="Password"
             id="password"
@@ -67,20 +59,22 @@ const LoginFrom = () => {
           />
         </div>
 
-        <div className="w-full">
-          <button
+        {/* Sign in button */}
+        <div className="w-full mt-4">
+          <Button
+            label="Sign In"
             type="submit"
-            className=" cursor-pointer text-center text-white font-bold text-lg transition-all duration-300 bg-blue-600 hover:bg-blue-700 w-full mt-10 py-3.5 rounded-md"
-          >
-            Sign In
-          </button>
+            icon={<LiaSignInAltSolid size={18} />}
+          />
         </div>
+
+        {/* Sign up link */}
         <div>
           <p className="text-center mt-2 text-gray-700">
-            Don`t have an Account?
-            <Link to={"/sign-up"}>
-              <span className="cursor-pointer text-blue-600 mx-2  font-semibold">
-                sign up
+            Don’t have an account?
+            <Link to="/sign-up">
+              <span className="cursor-pointer text-blue-600 mx-2 font-semibold">
+                Sign Up
               </span>
             </Link>
           </p>
@@ -89,4 +83,5 @@ const LoginFrom = () => {
     </div>
   );
 };
-export default LoginFrom;
+
+export default LoginForm;
