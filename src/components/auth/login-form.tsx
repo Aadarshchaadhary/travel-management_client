@@ -2,18 +2,13 @@ import { Link } from "react-router";
 import Input from "../common/ui/inputs/input";
 import { useForm } from "react-hook-form";
 
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../common/ui/buttons/buttons";
 import { LiaSignInAltSolid } from "react-icons/lia";
 
-const loginSchema = yup.object({
-  email: yup
-    .string()
-    .email("Enter a valid email")
-    .required("Email is required"),
-  password: yup.string().required("Password is required"),
-});
+import { loginSchema } from "../../schema/auth.schema";
+import { LoginUser } from "../../api/auth.api";
+import { useMutation } from "@tanstack/react-query";
 
 const LoginForm = () => {
   const {
@@ -28,8 +23,19 @@ const LoginForm = () => {
     resolver: yupResolver(loginSchema),
   });
 
+  //  using mutation hook
+  const { mutate } = useMutation({
+    mutationFn: LoginUser,
+    onSuccess: (Response) => {
+      console.log(Response);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
   const onSubmit = (data: { email: string; password: string }) => {
-    console.log(data);
+    mutate(data);
   };
 
   return (
