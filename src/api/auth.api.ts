@@ -1,11 +1,8 @@
-import axios from "axios";
+import api from ".";
 
 export const registerUser = async (data: any) => {
   try {
-    const response = await axios.post(
-      "http://localhost:8000/auth/register",
-      data
-    );
+    const response = await api.post("/auth/register", data);
     return response.data;
   } catch (error: any) {
     throw error.response.data;
@@ -14,7 +11,7 @@ export const registerUser = async (data: any) => {
 
 export const LoginUser = async (data: any) => {
   try {
-    const response = await axios.post("http://localhost:8000/auth/login", data);
+    const response = await api.post("/auth/login", data);
     return response.data;
   } catch (error: any) {
     console.log(error);

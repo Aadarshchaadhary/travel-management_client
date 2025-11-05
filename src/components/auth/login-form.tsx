@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Input from "../common/ui/inputs/input";
 import { useForm } from "react-hook-form";
 
@@ -9,8 +9,11 @@ import { LiaSignInAltSolid } from "react-icons/lia";
 import { loginSchema } from "../../schema/auth.schema";
 import { LoginUser } from "../../api/auth.api";
 import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 const LoginForm = () => {
+  const Navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -28,9 +31,18 @@ const LoginForm = () => {
     mutationFn: LoginUser,
     onSuccess: (Response) => {
       console.log(Response);
+      // ! on success naviagte to home page
+      toast.success(Response?.message || "Login Successfull", { icon: "👍🏼" });
+      Navigate("/", {
+        replace: true,
+      });
     },
+
     onError: (error) => {
       console.log(error);
+      toast.error(error?.message || " Something went wrong", {
+        icon: "❌🤨☹️",
+      });
     },
   });
 

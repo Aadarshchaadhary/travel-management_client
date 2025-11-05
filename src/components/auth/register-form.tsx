@@ -1,13 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Input from "../common/ui/inputs/input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup/src/yup.js";
-import axios from "axios";
+
 import { registerSchema } from "../../schema/auth.schema";
 import { useMutation } from "@tanstack/react-query";
+import { registerUser } from "../../api/auth.api";
+import toast from "react-hot-toast";
 
 const RegisterForm = () => {
+  const Navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -24,26 +28,19 @@ const RegisterForm = () => {
     resolver: yupResolver(registerSchema),
   });
 
-  // function to send http reqest
-  const registerUser = async (data: any) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/api/auth/register",
-        data
-      );
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   //  using mutation hook
   const { mutate } = useMutation({
     mutationFn: registerUser,
     onSuccess: (Response) => {
       console.log(Response);
+      toast.success(Response?.message || "Account Registered", { icon: "👍🏼" });
+      Navigate("/sign-in", {
+        replace: true,
+      });
     },
     onError: (error) => {
       console.log(error);
+      toast.error(error?.message || " Something went wrong", { icon: "🤨☹️" });
     },
   });
 
