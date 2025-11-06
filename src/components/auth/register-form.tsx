@@ -8,6 +8,7 @@ import { registerSchema } from "../../schema/auth.schema";
 import { useMutation } from "@tanstack/react-query";
 import { registerUser } from "../../api/auth.api";
 import toast from "react-hot-toast";
+import type { IRegister } from "../../@types/auth.types";
 
 const RegisterForm = () => {
   const Navigate = useNavigate();
@@ -44,7 +45,7 @@ const RegisterForm = () => {
     },
   });
 
-  const onSubmit = (data: { email: string; password: string }) => {
+  const onSubmit = (data: IRegister) => {
     mutate(data);
   };
 

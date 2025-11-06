@@ -10,6 +10,7 @@ import { loginSchema } from "../../schema/auth.schema";
 import { LoginUser } from "../../api/auth.api";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import type { ILogin } from "../../@types/auth.types";
 
 const LoginForm = () => {
   const Navigate = useNavigate();
@@ -46,7 +47,7 @@ const LoginForm = () => {
     },
   });
 
-  const onSubmit = (data: { email: string; password: string }) => {
+  const onSubmit = (data: ILogin) => {
     mutate(data);
   };
 
