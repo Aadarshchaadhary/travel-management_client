@@ -28,7 +28,7 @@ const NavBar = () => {
             Login
           </Link>
         )}
-        {!isLoading && user && <UserProfile />}
+        {!isLoading && user && <UserProfile user={user} />}
       </div>
     </div>
   );
