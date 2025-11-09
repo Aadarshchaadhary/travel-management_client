@@ -13,7 +13,7 @@ const UserProfile = () => {
       </div>
       <div>
         <div>
-          <p className="text-lg font-semibold text-blue-600 ">Bibek Sah</p>
+          <p className="text-lg font-semibold text-blue-600 ">Aadarsh chy</p>
         </div>
         <div>
           <p className="text-[16px] text-red-500">LogOut</p>

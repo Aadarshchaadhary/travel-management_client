@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
 const navLinks: { label: string; link: string }[] = [
   {
@@ -21,11 +21,14 @@ const navLinks: { label: string; link: string }[] = [
 ];
 
 const NavLinks = () => {
+  const location = useLocation();
+
   return (
     <div className="flex gap-2 tracking-wider text-lg font-semibold text-grey-900/80">
       {navLinks.map((item) => {
+        const isActive = item.link === location.pathname;
         return (
-          <Link to={item.link}>
+          <Link className={`${isActive ? "text-blue-500" : ""}`} to={item.link}>
             <span>{item.label}</span>
           </Link>
         );

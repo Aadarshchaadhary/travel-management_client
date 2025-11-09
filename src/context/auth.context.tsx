@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, {
+  useContext,
   useEffect,
   useState,
   type Dispatch,
@@ -29,6 +30,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [user, setUser] = useState(null);
+  console.log(AuthContext);
 
   const { data, isLoading } = useQuery({
     queryFn: me,
@@ -49,6 +51,11 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       {children}
     </AuthContext.Provider>
   );
+};
+
+// custom hook
+export const useAuth = () => {
+  return useContext(AuthContext);
 };
 
 export default AuthProvider;

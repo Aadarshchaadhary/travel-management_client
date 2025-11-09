@@ -11,9 +11,11 @@ import { LoginUser } from "../../api/auth.api";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import type { ILogin } from "../../@types/auth.types";
+import { useAuth } from "../../context/auth.context";
 
 const LoginForm = () => {
   const Navigate = useNavigate();
+  const { setUser } = useAuth();
 
   const {
     register,
@@ -34,6 +36,7 @@ const LoginForm = () => {
       console.log(Response);
       // ! on success naviagte to home page
       toast.success(Response?.message || "Login Successfull", { icon: "👍🏼" });
+      setUser(Response.data);
       Navigate("/", {
         replace: true,
       });
