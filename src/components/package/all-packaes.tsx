@@ -1,26 +1,21 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import SectionHeading from "../common/section-heading";
-import PackageCard from "./package/card";
 import { useQuery } from "@tanstack/react-query";
 import { getPopularPackage } from "../../api/package.api";
 import type { IPackageResponse } from "../../@types/package.types";
+import PackageCard from "../landing/package/card";
 
-const PopularPackages = () => {
-  // get popular packages
+const AllPackages = () => {
   const { data, isLoading } = useQuery({
     queryFn: getPopularPackage,
     queryKey: ["get_popular_package"],
   });
 
-  console.log(data, isLoading);
-
   return (
-    <div className="my-10 w-full px-24">
+    <div className="px-22 min-h-[85%] mt-10">
       <SectionHeading
-        title="Popular Packages"
-        subTitle="Discover our most popular tour packages"
-        link={"/packages"}
+        title="Browse Our All Available Packages"
+        subTitle="Browse Our All Available Packages"
       />
       <div className="mt-6">
         {isLoading && <p>Loading Packages....</p>}
@@ -37,4 +32,4 @@ const PopularPackages = () => {
   );
 };
 
-export default PopularPackages;
+export default AllPackages;

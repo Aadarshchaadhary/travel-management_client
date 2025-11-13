@@ -1,5 +1,5 @@
-import React from "react";
 import Button from "../common/ui/buttons/buttons";
+
 
 export const HeroSection = () => {
   return (
