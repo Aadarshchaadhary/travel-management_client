@@ -84,7 +84,7 @@ const PackageCard: React.FC<IProps> = ({ tourPackage }) => {
       {/* button */}
       <div className="my-2 px-1 w-full">
         <Link
-          to={`/package/${tourPackage?._id}?name=${tourPackage.name}$d=${tourPackage?.description}`}
+          to={`/package/${tourPackage?._id}?name=${tourPackage.name}&d=${tourPackage?.description}`}
         >
           <p className="h-full w-full  bg-blue-600 py-3 text-center tex-lg font-bold text-white rounded-md">
             View Detail
