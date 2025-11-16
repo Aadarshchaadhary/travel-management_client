@@ -1,7 +1,7 @@
 import type React from "react";
-import ImageCarousel from "../../../components/package/details/image-carousel";
+import ImageCarousel from "../../../package/details/image-carousel";
 import { useQuery } from "@tanstack/react-query";
-import { getPackageById } from "../../../api/package.api";
+import { getPackageById } from "../../../../api/package.api";
 import DetailSection from "./details-section";
 
 type IProps = {
@@ -29,14 +29,14 @@ const Details: React.FC<IProps> = ({ id }) => {
   return (
     <div className="mt-10 flex gap-10">
       {/* image */}
-      <div className="">
+      <div className="max-w-[40%]">
         <ImageCarousel
           pkgImages={data?.data?.images ?? [data?.data?.cover_image]}
         />
       </div>
       {/* detail */}
       <div className=" flex-1 border border-gray-300 rounded-md p-2">
-        <DetailSection pkg={data?.data} />
+        <DetailSection show_button pkg={data?.data} />
       </div>
     </div>
   );

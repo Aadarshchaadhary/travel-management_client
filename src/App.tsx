@@ -9,10 +9,11 @@ import ClientLayout from "./layouts/layouts";
 import AboutUs from "./pages/about_us";
 import ContactUs from "./pages/contact_us";
 import PackageDetailpage from "./pages/package/detail-page";
+import BookPackage from "./pages/book";
 
 function App() {
   return (
-    <>
+    <div className=" tracking-wider h-full w-full">
       <BrowserRouter>
         <Routes>
           {/* defining routes */}
@@ -24,6 +25,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/packages" element={<Packages />} />
             <Route path="/packages/:id" element={<PackageDetailpage />} />
+            <Route path="/Book/:id" element={<BookPackage />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/contact-us" element={<ContactUs />} />
           </Route>
@@ -31,7 +33,7 @@ function App() {
         {/* using react hot toaster */}
         <Toaster />
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

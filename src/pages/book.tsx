@@ -1,8 +1,9 @@
-import SectionHeading from "../../components/common/section-heading";
+import SectionHeading from "../components/common/section-heading";
 import { useParams, useSearchParams } from "react-router";
-import Details from "../../components/package/package/packageDetails";
 
-const PackageDetailpage = () => {
+import BookPkg from "../components/Book";
+
+const BookPackage = () => {
   const { id } = useParams();
   const [search] = useSearchParams();
 
@@ -18,10 +19,10 @@ const PackageDetailpage = () => {
 
       {/* detail component */}
       <div className="h-full w-full">
-        <Details id={id || ""} />
+        <BookPkg id={id || ""} />
       </div>
     </main>
   );
 };
 
-export default PackageDetailpage;
+export default BookPackage;

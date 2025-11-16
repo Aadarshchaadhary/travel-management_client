@@ -3,7 +3,7 @@ import SectionHeading from "../common/section-heading";
 import { useQuery } from "@tanstack/react-query";
 import { getPopularPackage } from "../../api/package.api";
 import type { IPackageResponse } from "../../@types/package.types";
-import PackageCard from "../landing/package/card";
+import PackageCard from "./package/card";
 
 const AllPackages = () => {
   const { data, isLoading } = useQuery({
