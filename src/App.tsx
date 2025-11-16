@@ -1,24 +1,34 @@
 import "./App.css";
-
 import LoginPage from "./pages/auth/login";
 import RegisterPage from "./pages/auth/register";
 import { BrowserRouter, Routes, Route } from "react-router";
 import { Toaster } from "react-hot-toast";
 import LandingPage from "./pages/landing";
-import PackageDetailPage from "./pages/package/detail-page";
+import Packages from "./pages/package/package";
+import ClientLayout from "./layouts/layouts";
+import AboutUs from "./pages/about_us";
+import ContactUs from "./pages/contact_us";
+import PackageDetailpage from "./pages/package/detail-page";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          {/* {defining routes} */}
-          <Route path="/" element={<LandingPage />} />
+          {/* defining routes */}
+
           <Route path="/sign-in" element={<LoginPage />} />
           <Route path="/sign-up" element={<RegisterPage />} />
-          <Route path="/package/:id" element={<PackageDetailPage />} />
-        </Routes>
 
+          <Route path="/" element={<ClientLayout />}>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/packages" element={<Packages />} />
+            <Route path="/packages/:id" element={<PackageDetailpage />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/contact-us" element={<ContactUs />} />
+          </Route>
+        </Routes>
+        {/* using react hot toaster */}
         <Toaster />
       </BrowserRouter>
     </>

@@ -1,31 +1,27 @@
-import React from "react";
 import SectionHeading from "../../components/common/section-heading";
 import { useParams, useSearchParams } from "react-router";
-import ImageCarousel from "../../components/package/details/image-carousel";
 import Details from "./packageDetails";
 
-const PackageDetailPage = () => {
-  const [search] = useSearchParams();
+const PackageDetailpage = () => {
   const { id } = useParams();
-
-  console.log("Package ID:", id);
-  console.log("Package Name:", search.get("name"));
+  const [search] = useSearchParams();
 
   return (
-    <main className="h-full w-full px-8">
-      {" "}
-      <div className="h-fit w-full shadow p-4 rounded-lg bg-white">
+    <main className="h-full w-full px-22 mt-6">
+      {/* heading */}
+      <div className="h-fit w-full shadow p-2 rounded-md">
         <SectionHeading
           title={search.get("name") || ""}
-          subTitle={search.get("d") || "No description available"}
+          subTitle={search.get("d") || ""}
         />
       </div>
-      {/* ✅ Placeholder for details component */}
-      <div className="mt-6">
+
+      {/* detail component */}
+      <div className="h-full w-full">
         <Details id={id || ""} />
       </div>
     </main>
   );
 };
 
-export default PackageDetailPage;
+export default PackageDetailpage;

@@ -1,13 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from "react";
-
 import { useQuery } from "@tanstack/react-query";
 import SectionHeading from "../../common/section-heading";
-import type {
-  ICategoryResponse,
-  IPackageResponse,
-} from "../../../@types/package.types";
-import PackageCard from "../package/card";
+import type { ICategoryResponse } from "../../../@types/package.types";
 import CategoryCard from "./card";
 import { getCategories } from "../../../api/category.api";
 
@@ -35,6 +29,11 @@ const CategoryList = () => {
             {data?.data?.map((category: ICategoryResponse) => (
               <CategoryCard category={category} />
             ))}
+          </div>
+        )}
+        {!isLoading && data?.data?.length === 0 && (
+          <div>
+            <p>No Data Found</p>
           </div>
         )}
       </div>

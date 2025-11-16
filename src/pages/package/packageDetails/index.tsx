@@ -1,33 +1,43 @@
-import React from "react";
+import type React from "react";
 import ImageCarousel from "../../../components/package/details/image-carousel";
 import { useQuery } from "@tanstack/react-query";
 import { getPackageById } from "../../../api/package.api";
+import DetailSection from "./details-section";
+
 type IProps = {
   id: string;
 };
 
 const Details: React.FC<IProps> = ({ id }) => {
   // get package by id
+
   const { isLoading, data } = useQuery({
     queryFn: () => getPackageById(id),
-    queryKey: ["GET_PKG_BY_id"],
+    queryKey: ["get_pkg_by_id"],
   });
+
+  // is loading
 
   if (isLoading) {
     return (
-      <div>
-        <p>Loading Data.....</p>
+      <div className="h-full w-full flex items-center justify-center">
+        <p>Loading data....</p>
       </div>
     );
   }
+
   return (
-    <div>
-      <div>
+    <div className="mt-10 flex gap-10">
+      {/* image */}
+      <div className="">
         <ImageCarousel
           pkgImages={data?.data?.images ?? [data?.data?.cover_image]}
         />
       </div>
-      <div></div>
+      {/* detail */}
+      <div className=" flex-1 border border-gray-300 rounded-md p-2">
+        <DetailSection pkg={data?.data} />
+      </div>
     </div>
   );
 };

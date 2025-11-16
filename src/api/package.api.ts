@@ -1,4 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import api from ".";
 
 export const getPopularPackage = async () => {
@@ -10,7 +11,7 @@ export const getPopularPackage = async () => {
   }
 };
 
-export const getPackageById = async (id: String) => {
+export const getPackageById = async (id: string) => {
   try {
     const response = await api.get(`/package/${id}`);
     return response.data;
@@ -18,5 +19,3 @@ export const getPackageById = async (id: String) => {
     throw error.response.data;
   }
 };
-
-export default getPopularPackage;

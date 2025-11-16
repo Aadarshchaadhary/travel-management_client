@@ -43,7 +43,7 @@ const PackageCard: React.FC<IProps> = ({ tourPackage }) => {
         {/* price */}
         <div className="flex items-center gap-1">
           <TbCurrencyRupeeNepalese size={20} className="text-blue-700" />
-          <span className="text-sm font-semibold text-gray-700">
+          <span className="text-[12px] font-semibold text-gray-700">
             {tourPackage.price}{" "}
             {tourPackage.cost_type.replace("_", " ").toLocaleLowerCase()}
           </span>
@@ -54,14 +54,14 @@ const PackageCard: React.FC<IProps> = ({ tourPackage }) => {
             size={20}
             className="text-blue-700"
           />
-          <span className="text-sm font-semibold text-gray-700">
+          <span className="text-[12px] font-semibold text-gray-700">
             {tourPackage.seats_available} / {tourPackage.total_seats}
           </span>{" "}
           seats available
         </div>
         <div className="flex items-center gap-1">
           <FaRegCalendarAlt size={18} className="text-blue-700" />
-          <span className="text-sm font-semibold text-gray-700">
+          <span className="text-[12px] font-semibold text-gray-700">
             {Math.abs(daystoGo)} {daystoGo > 0 ? "days to go" : "days ago"} (
             {startDate.format("D MMM YYYY")})
           </span>
@@ -69,13 +69,13 @@ const PackageCard: React.FC<IProps> = ({ tourPackage }) => {
 
         <div className="flex items-center gap-1">
           <IoBed size={20} className="text-blue-700" />
-          <span className="text-sm font-semibold text-gray-700">
+          <span className="text-[12px] font-semibold text-gray-700">
             {totalDays} Days stay
           </span>
         </div>
 
         {/* desc */}
-        <p className="line-clamp-2 text-sm text-gray-700 mt-2">
+        <p className="line-clamp-2 text-[12px] text-gray-700 mt-2">
           {tourPackage?.description ||
             "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups."}
         </p>
@@ -84,7 +84,7 @@ const PackageCard: React.FC<IProps> = ({ tourPackage }) => {
       {/* button */}
       <div className="my-2 px-1 w-full">
         <Link
-          to={`/package/${tourPackage?._id}?name=${tourPackage.name}&d=${tourPackage?.description}`}
+          to={`/packages/${tourPackage?._id}?name=${tourPackage.name}&d=${tourPackage?.description}`}
         >
           <p className="h-full w-full  bg-blue-600 py-3 text-center tex-lg font-bold text-white rounded-md">
             View Detail

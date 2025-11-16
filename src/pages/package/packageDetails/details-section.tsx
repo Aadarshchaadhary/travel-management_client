@@ -1,15 +1,17 @@
 import React from "react";
 import type { IPackageResponse } from "../../../@types/package.types";
 
-type IIprops = {
+type IProps = {
   pkg: IPackageResponse;
 };
-const DetailsSection: React.FC<IIprops> = ({ pkg }) => {
+
+const DetailSection: React.FC<IProps> = ({ pkg }) => {
   return (
-    <div>
-      D<h1>{pkg.name}</h1>
+    <div className="w-full h-full">
+      {/* name */}
+      <h1 className="text-gray-800 font-bold text-2xl">{pkg.name}</h1>
     </div>
   );
 };
 
-export default DetailsSection;
+export default DetailSection;
