@@ -1,5 +1,4 @@
 import type React from "react";
-import ImageCarousel from "../package/details/image-carousel";
 import { useQuery } from "@tanstack/react-query";
 import { getPackageById } from "../../api/package.api";
 import DetailSection from "../package/package/packageDetails/details-section";
@@ -28,15 +27,12 @@ const BookPkg: React.FC<IProps> = ({ id }) => {
   }
 
   return (
-    <div className="mt-10 flex gap-10 min-h-[400px]">
-      {/* image */}
-      <div className="h-full flex-1 border border-gray-300 rounded-md p-2 ">
-        {/* <ImageCarousel
-          pkgImages={data?.data?.images ?? [data?.data?.cover_image]}
-        /> */}
+    <div className="mt-10 flex gap-10 min-h-[500px]">
+      {/* detail */}
+      <div className="flex-1 border border-gray-300 rounded-md p-2">
         <DetailSection pkg={data?.data} />
       </div>
-      {/* detail */}
+      {/* form */}
       <div className=" flex-1 border border-gray-300 rounded-md p-2">
         <BookForm />
       </div>

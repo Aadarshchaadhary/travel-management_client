@@ -19,8 +19,9 @@ const DetailSection: React.FC<IProps> = ({ pkg, show_button }) => {
   const currentDate = moment(new Date(Date.now()));
   const startDate = moment(pkg.start_date);
   const endDate = moment(pkg.end_date);
-  const daystoGo = startDate.diff(currentDate, "days");
   const totalDays = endDate.diff(startDate, "days");
+  const daystoGo = startDate.diff(currentDate, "days");
+
   return (
     <div className=" relative w-full h-full px-2">
       {/* name */}

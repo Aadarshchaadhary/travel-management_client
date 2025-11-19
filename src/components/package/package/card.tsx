@@ -1,98 +1,97 @@
-import React from "react";
-import type { IPackageResponse } from "../../../@types/package.types";
-import { TbCurrencyRupeeNepalese } from "react-icons/tb";
-import { MdOutlineAirlineSeatReclineNormal } from "react-icons/md";
-import { FaRegCalendarAlt } from "react-icons/fa";
-import { CiStopwatch } from "react-icons/ci";
-import { IoBed } from "react-icons/io5";
-import { Link } from "react-router";
-import moment from "moment";
+import React from 'react'
+import type { IPackageResponse } from '../../../@types/package.types'
+import { TiStarFullOutline } from "react-icons/ti";
+import { TbCurrencyRupeeNepalese } from 'react-icons/tb';
+import { CiStopwatch } from 'react-icons/ci';
+import moment from 'moment';
+import { MdOutlineAirlineSeatReclineNormal } from 'react-icons/md';
+import { FaRegCalendarAlt } from 'react-icons/fa';
+import { IoBed } from 'react-icons/io5';
+import { CiShoppingTag } from "react-icons/ci";
+import { Link } from 'react-router';
 type IProps = {
-  tourPackage: IPackageResponse;
-};
+  pkg: IPackageResponse
+  show_button?:boolean
+}
 
-const PackageCard: React.FC<IProps> = ({ tourPackage }) => {
-  const daysAgo = moment(tourPackage.createdAt).fromNow();
-  const currentDate = moment(new Date(Date.now()));
-  const startDate = moment(tourPackage.start_date);
-  const endDate = moment(tourPackage.end_date);
-  const daystoGo = startDate.diff(currentDate, "days");
-  const totalDays = endDate.diff(startDate, "days");
-
+const DetailSection: React.FC<IProps> = ({ pkg ,show_button=false}) => {
+  const daysAgo = moment(pkg.createdAt).fromNow();
+  const currentDate = moment(new Date(Date.now()))
+  const startDate = moment(pkg.start_date)
+  const endDate = moment(pkg.end_date)
+  const daystoGo = startDate.diff(currentDate, 'days')
+  const totalDays = endDate.diff(startDate, 'days')
   return (
-    <div className="min-h-[200px]  border border-gray-300 rounded-lg shadow-sm">
-      {/* image */}
-      <div className="w-full h-[250px] p-2 rounded-md overflow-clip">
-        <img
-          src={tourPackage?.cover_image.path}
-          className="h-full w-full object-fill rounded-md"
-        />
+    <div className='relative w-full h-full px-2'>
+      {/* name */}
+      <div className='w-full flex justify-between'>
+        <h1 className='text-gray-800 font-bold text-3xl'>{pkg.name}</h1>
+        <div className='flex gap-1'>
+          <span>4.5</span>
+          <TiStarFullOutline size={22} className='text-yellow-500' />
+        </div>
+
       </div>
-      {/* detail */}
-      <div className="px-1 mt-2 flex flex-col gap-1">
-        <div className="flex items-center justify-between">
-          <p className="text-xl font-semibold text-blue-700">
-            {tourPackage.name}
-          </p>
-          <div className="flex items-center gap-1">
-            <CiStopwatch size={19} className="text-blue-700" />
-            <p className="text-[14px] font-semibold text-gray-700">{daysAgo}</p>
+
+      {/* price */}
+      <div className='flex items-center gap-1 mt-2'>
+        <TbCurrencyRupeeNepalese size={20} className='text-blue-700' />
+        <span className='text-[18px] mt-1 font-semibold text-gray-700'>{pkg.price.toFixed(2)} {pkg.cost_type.replace('_', ' ').toLocaleLowerCase()}</span>
+      </div>
+
+      {/* chips */}
+      <div className='flex gap-2 flex-wrap mt-3'>
+
+        {/* category */}
+        <div className='flex gap-1 items-center border border-gray-300 w-fit py-1 px-2 rounded-md '>
+          <CiShoppingTag size={22} className='text-blue-500 ' />
+          <p className='text-[18px] mt-1 font-semibold text-gray-700'>{pkg.category.name}</p>
+        </div>
+
+        <div className='flex items-center justify-between  border border-gray-300 w-fit py-1 px-2 rounded-md'>
+          <div className='flex items-center gap-1'>
+            <CiStopwatch size={19} className='text-blue-700' />
+            <p className='text-[18px] font-semibold text-gray-700'>{daysAgo}</p>
           </div>
+
         </div>
 
-        {/* price */}
-        <div className="flex items-center gap-1">
-          <TbCurrencyRupeeNepalese size={20} className="text-blue-700" />
-          <span className="text-[12px] font-semibold text-gray-700">
-            {tourPackage.price}{" "}
-            {tourPackage.cost_type.replace("_", " ").toLocaleLowerCase()}
-          </span>
+        <div className='flex items-center gap-1 mt-1 text-[18px]  border border-gray-300 w-fit py-1 px-2 rounded-md'>
+          <MdOutlineAirlineSeatReclineNormal size={20} className='text-blue-700' />
+          <span className='text-[18px] font-semibold text-gray-700'>{pkg.seats_available} / {pkg.total_seats}</span> seats available
         </div>
-        {/* price */}
-        <div className="flex items-center gap-1">
-          <MdOutlineAirlineSeatReclineNormal
-            size={20}
-            className="text-blue-700"
-          />
-          <span className="text-[12px] font-semibold text-gray-700">
-            {tourPackage.seats_available} / {tourPackage.total_seats}
-          </span>{" "}
-          seats available
-        </div>
-        <div className="flex items-center gap-1">
-          <FaRegCalendarAlt size={18} className="text-blue-700" />
-          <span className="text-[12px] font-semibold text-gray-700">
-            {Math.abs(daystoGo)} {daystoGo > 0 ? "days to go" : "days ago"} (
-            {startDate.format("D MMM YYYY")})
-          </span>
+        <div className='flex items-center gap-1 mt-1  border border-gray-300 w-fit py-1 px-2 rounded-md'>
+          <FaRegCalendarAlt size={18} className='text-blue-700' />
+          <span className='text-[18px] font-semibold text-gray-700'>{Math.abs(daystoGo)}  {daystoGo > 0 ? 'days to go' : 'days ago'} ({startDate.format('D MMM YYYY')})</span>
         </div>
 
-        <div className="flex items-center gap-1">
-          <IoBed size={20} className="text-blue-700" />
-          <span className="text-[12px] font-semibold text-gray-700">
-            {totalDays} Days stay
-          </span>
+        <div className='flex items-center gap-1 mt-1  border border-gray-300 w-fit py-1 px-2 rounded-md'>
+          <IoBed size={20} className='text-blue-700' />
+          <span className='text-[18px] font-semibold text-gray-700'>{totalDays} Days stay</span>
         </div>
 
-        {/* desc */}
-        <p className="line-clamp-2 text-[12px] text-gray-700 mt-2">
-          {tourPackage?.description ||
-            "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups."}
-        </p>
+
       </div>
 
-      {/* button */}
-      <div className="my-2 px-1 w-full">
-        <Link
-          to={`/packages/${tourPackage?._id}?name=${tourPackage.name}&d=${tourPackage?.description}`}
-        >
-          <p className="h-full w-full  bg-blue-600 py-3 text-center tex-lg font-bold text-white rounded-md">
-            View Detail
-          </p>
-        </Link>
+      {/* description */}
+      <div className='mt-6'>
+        <p className='text-gray-600 text-[16px]'>{pkg.description}</p>
       </div>
+
+      {/* button section */}
+     {show_button && <div className='absolute bottom-0 right-1 w-full flex  items-center justify-end  gap-10 mt-10 font-bold'>
+        <button className=' min-w-[180px] border border-blue-600 px-5 py-4 rounded-md text-blue-700 cursor-pointer' >
+          Add to Favourite
+        </button>
+        <button className='bg-blue-500 px-5 py-4 min-w-[180px] rounded-md text-white cursor-pointer'>
+          <Link to={`/book/${pkg._id}?name=${pkg.name}&d=${pkg.description}`}>
+            Book Now
+          </Link>
+        </button>
+      </div>}
+
     </div>
-  );
-};
+  )
+}
 
-export default PackageCard;
+export default DetailSection

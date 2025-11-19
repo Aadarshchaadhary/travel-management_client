@@ -1,8 +1,9 @@
 import type React from "react";
-import ImageCarousel from "../../../package/details/image-carousel";
+
 import { useQuery } from "@tanstack/react-query";
 import { getPackageById } from "../../../../api/package.api";
 import DetailSection from "./details-section";
+import ImageCarousel from "../../details/image-carousel";
 
 type IProps = {
   id: string;
@@ -29,7 +30,7 @@ const Details: React.FC<IProps> = ({ id }) => {
   return (
     <div className="mt-10 flex gap-10">
       {/* image */}
-      <div className="max-w-[40%]">
+      <div className="">
         <ImageCarousel
           pkgImages={data?.data?.images ?? [data?.data?.cover_image]}
         />

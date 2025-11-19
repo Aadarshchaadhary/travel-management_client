@@ -1,7 +1,6 @@
+import BookPkg from "../components/Book";
 import SectionHeading from "../components/common/section-heading";
 import { useParams, useSearchParams } from "react-router";
-
-import BookPkg from "../components/Book";
 
 const BookPackage = () => {
   const { id } = useParams();
