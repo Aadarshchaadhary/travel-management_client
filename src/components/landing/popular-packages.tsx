@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React from "react";
 import SectionHeading from "../common/section-heading";
-
+import PackageCard from "../package/packageDetail/card";
 import { useQuery } from "@tanstack/react-query";
 import { getPopularPackage } from "../../api/package.api";
 import type { IPackageResponse } from "../../@types/package.types";
-import PackageCard from "../package/package/card";
 
 const PopularPackages = () => {
   // get popular packages

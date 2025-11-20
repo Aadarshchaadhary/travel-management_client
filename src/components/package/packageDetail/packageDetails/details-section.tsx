@@ -1,5 +1,5 @@
 import React from "react";
-import type { IPackageResponse } from "../../../../@types/package.types";
+
 import { TiStarFullOutline } from "react-icons/ti";
 import { TbCurrencyRupeeNepalese } from "react-icons/tb";
 import { CiStopwatch } from "react-icons/ci";
@@ -9,21 +9,21 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import { IoBed } from "react-icons/io5";
 import { CiShoppingTag } from "react-icons/ci";
 import { Link } from "react-router";
+import type { IPackageResponse } from "../../../../@types/package.types";
 type IProps = {
   pkg: IPackageResponse;
   show_button?: boolean;
 };
 
-const DetailSection: React.FC<IProps> = ({ pkg, show_button }) => {
+const DetailSection: React.FC<IProps> = ({ pkg, show_button = false }) => {
   const daysAgo = moment(pkg.createdAt).fromNow();
   const currentDate = moment(new Date(Date.now()));
   const startDate = moment(pkg.start_date);
   const endDate = moment(pkg.end_date);
   const totalDays = endDate.diff(startDate, "days");
   const daystoGo = startDate.diff(currentDate, "days");
-
   return (
-    <div className=" relative w-full h-full px-2">
+    <div className="relative w-full h-full px-2">
       {/* name */}
       <div className="w-full flex justify-between">
         <h1 className="text-gray-800 font-bold text-3xl">{pkg.name}</h1>
@@ -84,17 +84,19 @@ const DetailSection: React.FC<IProps> = ({ pkg, show_button }) => {
           </span>
         </div>
       </div>
+
       {/* description */}
       <div className="mt-6">
-        <p className=" text-grey-600 text-[16px]">{pkg.description}</p>
+        <p className="text-gray-600 text-[16px]">{pkg.description}</p>
       </div>
+
       {/* button section */}
       {show_button && (
-        <div className=" absolute bottom-0 right-1 w-full flex items-center justify-end gap-10 mt-10 font-bold">
-          <button className="border border-blue-400 px-4 py-3 rounded-md text-blue-600 cursor-pointer">
-            Add to Favourite{" "}
+        <div className="absolute bottom-0 right-1 w-full flex  items-center justify-end  gap-10 mt-10 font-bold">
+          <button className=" min-w-[180px] border border-blue-600 px-5 py-4 rounded-md text-blue-700 cursor-pointer">
+            Add to Favourite
           </button>
-          <button className="bg-blue-500 px-5 py-3 min-w-[180px] rounded-md text-white cursor-pointer">
+          <button className="bg-blue-500 px-5 py-4 min-w-[180px] rounded-md text-white cursor-pointer">
             <Link to={`/book/${pkg._id}?name=${pkg.name}&d=${pkg.description}`}>
               Book Now
             </Link>

@@ -1,6 +1,6 @@
 import SectionHeading from "../../components/common/section-heading";
 import { useParams, useSearchParams } from "react-router";
-import Details from "../../components/package/package/packageDetails";
+import Details from "../../components/package/packageDetail/packageDetails";
 
 const PackageDetailpage = () => {
   const { id } = useParams();
