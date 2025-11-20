@@ -1,38 +1,37 @@
-import type { IImage, IResponse, PACKAGE_COST_TYPE } from "./global.types"
+import type { IImage, IResponse, PACKAGE_COST_TYPE } from "./global.types";
 
 type ICategory = {
-    name: string,
-    description: string,
-    logo:IImage
-}
+  name: string;
+  description: string;
+  logo: IImage;
+};
 
-type IDestination =  {
-        location: string,
-        time:string
-    }
+type IDestination = {
+  location: string;
+  time: string;
+};
 
 export type IPackage = {
-    name: string,
-    description: string,
-    category: ICategory,
-    cover_image: IImage,
-    images?: IImage[],
-    start_date: string,
-    end_date: string,
-    total_seats: number,
-    seats_available: number,
-    price:number
-    destinations?: IDestination[],
-    cost_type:PACKAGE_COST_TYPE  
-}
+  name: string;
+  description: string;
+  category: ICategory;
+  cover_image: IImage;
+  images?: IImage[];
+  start_date: string;
+  end_date: string;
+  total_seats: number;
+  seats_available: number;
+  price: number;
+  destinations?: IDestination[];
+  cost_type: PACKAGE_COST_TYPE;
+};
 
-export type IPackageResponse = IPackage & IResponse
-export type ICategoryResponse = ICategory & IResponse
-
+export type IPackageResponse = IPackage & IResponse;
+export type ICategoryResponse = ICategory & IResponse;
 
 export type IBookPackage = {
-    full_name: string,
-    phone: string,
-    total_person: number,
-    tour_package:string
-}
+  full_name: string;
+  phone: string;
+  total_person: number;
+  tour_package: string;
+};

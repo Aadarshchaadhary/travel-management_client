@@ -1,27 +1,30 @@
 import { Link, useNavigate } from "react-router";
-import Input from "../common/ui/inputs/input";
 import { useForm } from "react-hook-form";
-
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation } from "@tanstack/react-query";
+
+import Input from "../common/ui/inputs/input";
 import Button from "../common/ui/buttons/buttons";
+
 import { LiaSignInAltSolid } from "react-icons/lia";
+import toast from "react-hot-toast";
 
 import { loginSchema } from "../../schema/auth.schema";
-import { LoginUser } from "../../api/auth.api";
-import { useMutation } from "@tanstack/react-query";
-import toast from "react-hot-toast";
-import type { ILogin } from "../../@types/auth.types";
+import { loginUser as LoginUser } from "../../api/auth.api";
 import { useAuth } from "../../context/auth.context";
 
+import type { ILogin } from "../../@types/auth.types";
+
 const LoginForm = () => {
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const { setUser } = useAuth();
 
+  // ⛳ Form setup
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<ILogin>({
     defaultValues: {
       email: "",
       password: "",
@@ -29,27 +32,28 @@ const LoginForm = () => {
     resolver: yupResolver(loginSchema),
   });
 
-  //  using mutation hook
+  // 🚀 Login mutation
   const { mutate } = useMutation({
     mutationFn: LoginUser,
-    onSuccess: (Response) => {
-      console.log(Response);
-      // ! on success naviagte to home page
-      toast.success(Response?.message || "Login Successfull", { icon: "👍🏼" });
-      setUser(Response.data);
-      Navigate("/", {
-        replace: true,
-      });
+
+    onSuccess: (response) => {
+      toast.success(response?.message || "Login Successful", { icon: "👍🏼" });
+
+      // Save user to context
+      setUser(response.data);
+
+      // Redirect to homepage
+      navigate("/", { replace: true });
     },
 
-    onError: (error) => {
-      console.log(error);
-      toast.error(error?.message || " Something went wrong", {
-        icon: "❌🤨☹️",
+    onError: (error: any) => {
+      toast.error(error?.message || "Something went wrong", {
+        icon: "❌🤨",
       });
     },
   });
 
+  // 🔥 Form submission handler
   const onSubmit = (data: ILogin) => {
     mutate(data);
   };
@@ -57,8 +61,8 @@ const LoginForm = () => {
   return (
     <div className="mt-5 w-full h-full">
       <form onSubmit={handleSubmit(onSubmit)} className="w-full h-full">
-        <div className="w-full h-full flex flex-col gap-5">
-          {/* Email input */}
+        {/* Form Fields */}
+        <div className="flex flex-col gap-5 w-full h-full">
           <Input
             error={errors?.email?.message}
             name="email"
@@ -69,19 +73,18 @@ const LoginForm = () => {
             type="email"
           />
 
-          {/* Password input */}
           <Input
             error={errors?.password?.message}
             name="password"
             register={register}
             label="Password"
             id="password"
-            placeholder="xxxxxxxxxxx"
+            placeholder="********"
             type="password"
           />
         </div>
 
-        {/* Sign in button */}
+        {/* Submit Button */}
         <div className="w-full mt-4">
           <Button
             label="Sign In"
@@ -90,17 +93,15 @@ const LoginForm = () => {
           />
         </div>
 
-        {/* Sign up link */}
-        <div>
-          <p className="text-center mt-2 text-gray-700">
-            Don’t have an account?
-            <Link to="/sign-up">
-              <span className="cursor-pointer text-blue-600 mx-2 font-semibold">
-                Sign Up
-              </span>
-            </Link>
-          </p>
-        </div>
+        {/* Sign Up Link */}
+        <p className="text-center mt-2 text-gray-700">
+          Don’t have an account?
+          <Link to="/sign-up">
+            <span className="cursor-pointer text-blue-600 mx-2 font-semibold">
+              Sign Up
+            </span>
+          </Link>
+        </p>
       </form>
     </div>
   );

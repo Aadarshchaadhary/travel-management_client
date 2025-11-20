@@ -3,7 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import SectionHeading from "../../common/section-heading";
 import type { ICategoryResponse } from "../../../@types/package.types";
 import CategoryCard from "./card";
-import { getCategories } from "../../../api/category.api";
+import { getCategories } from '../../../api/category.api'
+
 
 const CategoryList = () => {
   // get popular packages
