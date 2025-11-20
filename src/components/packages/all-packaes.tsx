@@ -1,8 +1,7 @@
-import SectionHeading from "../common/section-heading";
 import { useQuery } from "@tanstack/react-query";
 import { getPopularPackage } from "../../api/package.api";
+import SectionHeading from "../common/section-heading";
 import type { IPackageResponse } from "../../@types/package.types";
-import PackageCard from "../package/packageDetail/card";
 
 const AllPackages = () => {
   const { data, isLoading } = useQuery({
@@ -22,8 +21,7 @@ const AllPackages = () => {
         {!isLoading && data?.data?.length > 0 && (
           <div className="grid grid-cols-5 gap-8">
             {data?.data?.map((tourPackage: IPackageResponse) => (
-              <PackageCard key={tourPackage._id} tourpackage={tourPackage} />
-
+              <PackageCard tourPackage={tourPackage} />
             ))}
           </div>
         )}

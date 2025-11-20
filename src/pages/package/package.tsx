@@ -1,4 +1,4 @@
-import AllPackages from "../../components/package/all-packaes";
+import AllPackages from "../../components/packages/all-packaes";
 
 const Packages = () => {
   return (

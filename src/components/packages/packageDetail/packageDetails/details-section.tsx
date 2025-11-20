@@ -10,6 +10,7 @@ import { IoBed } from "react-icons/io5";
 import { CiShoppingTag } from "react-icons/ci";
 import { Link } from "react-router";
 import type { IPackageResponse } from "../../../../@types/package.types";
+
 type IProps = {
   pkg: IPackageResponse;
   show_button?: boolean;

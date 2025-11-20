@@ -1,8 +1,9 @@
 import type React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getPackageById } from "../../api/package.api";
-import DetailSection from "../package/packageDetail/packageDetails/details-section";
+
 import BookForm from "./book-form";
+import DetailSection from "../packages/packageDetail/packageDetails/details-section";
 
 type IProps = {
   id: string;

@@ -1,9 +1,10 @@
 import type React from "react";
 
 import { useQuery } from "@tanstack/react-query";
-import { getPackageById } from "../../../../api/package.api";
+
 import DetailSection from "./details-section";
 import ImageCarousel from "../../details/image-carousel";
+import { getPackageById } from "../../../../api/package.api";
 
 type IProps = {
   id: string;

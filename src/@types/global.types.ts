@@ -6,8 +6,8 @@ export enum Gender {
 
 export type IResponse = {
   _id: string;
-  createAt: string;
-  upadateAt: string;
+  createdAt: string;
+  upadatedAt: string;
 };
 
 export type IImage = {
