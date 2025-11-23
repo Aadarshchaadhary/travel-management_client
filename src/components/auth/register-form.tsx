@@ -65,7 +65,7 @@ const RegisterForm = () => {
               register={register}
               label="First Name"
               id="first_name"
-              placeholder="John"
+              placeholder="Enter First Name"
             />
             {/* last Name */}
             <Input
@@ -75,7 +75,7 @@ const RegisterForm = () => {
               error={errors?.last_name?.message}
               register={register}
               name="last_name"
-              placeholder="Doe"
+              placeholder="Enter Last Name"
             />
           </div>
 
@@ -87,7 +87,7 @@ const RegisterForm = () => {
             register={register}
             label="Email"
             id="email"
-            placeholder="johndoe@gmail.com"
+            placeholder="abc@gmail.com"
             type="email"
           />
 

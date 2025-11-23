@@ -6,20 +6,25 @@ const BookPackage = () => {
   const { id } = useParams();
   const [search] = useSearchParams();
 
-  return (
-    <main className="h-full w-full px-22 mt-6">
-      {/* heading */}
-      <div className="h-fit w-full shadow p-2 rounded-md">
-        <SectionHeading
-          title={search.get("name") || ""}
-          subTitle={search.get("d") || ""}
-        />
-      </div>
+  const packageName = search.get("name") || "Travel Package";
+  const packageDesc = search.get("d") || "Book your perfect adventure";
 
-      {/* detail component */}
-      <div className="h-full w-full">
+  return (
+    <main className="min-h-screen w-full px-6 md:px-20 py-10 bg-gray-50">
+      {/* Heading Section */}
+      <section className="max-w-5xl mx-auto mb-10">
+        <div className="bg-white shadow-lg rounded-xl p-6 md:p-10 text-center">
+          <SectionHeading title={packageName} subTitle={packageDesc} />
+          <p className="text-gray-500 mt-2 text-sm md:text-base">
+            Plan your journey with ease and book all your travel needs in one place.
+          </p>
+        </div>
+      </section>
+
+      {/* Booking Component */}
+      <section className="max-w-5xl mx-auto">
         <BookPkg id={id || ""} />
-      </div>
+      </section>
     </main>
   );
 };

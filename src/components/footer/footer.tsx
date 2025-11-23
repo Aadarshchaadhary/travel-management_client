@@ -21,7 +21,7 @@ const Footer = () => {
             <li className="hover:text-white cursor-pointer">Home</li>
             <li className="hover:text-white cursor-pointer">Packages</li>
             <li className="hover:text-white cursor-pointer">About Us</li>
-            <li className="hover:text-white cursor-pointer">Contact</li>
+            <li className="hover:text-white cursor-pointer">ContactUs</li>
           </ul>
         </div>
 
@@ -29,8 +29,8 @@ const Footer = () => {
         <div>
           <h2 className="text-xl font-semibold text-white mb-3">Contact Us</h2>
           <p className="text-sm">Kathmandu, Nepal</p>
-          <p className="text-sm mt-1">+977 9800000000</p>
-          <p className="text-sm mt-1">@gmail.com</p>
+          <p className="text-sm mt-1">+977 9878654321</p>
+          <p className="text-sm mt-1">adarshry869@gmail.com</p>
         </div>
       </div>
 

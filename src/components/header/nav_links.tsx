@@ -15,7 +15,7 @@ const navLinks: { label: string; link: string }[] = [
   },
   {
     label: "Contact",
-    link: "/contact",
+    link: "/contact-Us",
   },
 ];
 

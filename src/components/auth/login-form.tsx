@@ -40,7 +40,7 @@ const LoginForm = () => {
       toast.success(response?.message || "Login Successful", { icon: "👍🏼" });
 
       // Save user to context
-      setUser(response.data);
+      setUser(response.data.user);
 
       // Redirect to homepage
       navigate("/", { replace: true });
@@ -95,7 +95,7 @@ const LoginForm = () => {
 
         {/* Sign Up Link */}
         <p className="text-center mt-2 text-gray-700">
-          Don’t have an account?
+          Don`t have an account?
           <Link to="/sign-up">
             <span className="cursor-pointer text-blue-600 mx-2 font-semibold">
               Sign Up
