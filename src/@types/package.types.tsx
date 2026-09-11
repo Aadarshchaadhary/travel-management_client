@@ -12,17 +12,30 @@ type IDestination = {
 };
 
 export type IPackage = {
+  _id: string;
+
   name: string;
+
   description: string;
+
   category: ICategory;
+
   cover_image: IImage;
+
   images?: IImage[];
+
   start_date: string;
+
   end_date: string;
+
   total_seats: number;
+
   seats_available: number;
+
   price: number;
+
   destinations?: IDestination[];
+
   cost_type: PACKAGE_COST_TYPE;
 };
 
