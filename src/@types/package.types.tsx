@@ -34,7 +34,7 @@ export type IPackage = {
 
   price: number;
 
-  destinations?: IDestination[];
+  destination?: IDestination[];
 
   cost_type: PACKAGE_COST_TYPE;
 };
